@@ -1,4 +1,4 @@
-# OnPremSQLToAzureAPIwithLogicApps
+# On Prem SQL To Azure API with Logic Apps
 
 <h2>Scenario</h2>
 Customer wants to expose a subset of On Premise SQL Database data (multiple databases, specific tables / views) as combined (so related data from different DB’s into single) API’s to the outside world.
@@ -10,10 +10,6 @@ Customer wants to expose a subset of On Premise SQL Database data (multiple data
 The solution makes use of an On Prem database(s) (1) with SQL Replication (2) to Azure SQL (3). Azure SQL supports the concept of Remote Tables (4), which allow you to query cross databases as if it is one database. Logic Apps (5) is a very easy way to convert SQL table data into JSON over a HTTPS endpoint. API Management (6) exposes the Logic App endpoint as an API and takes care of caching (7).
 
 <h2>System flow</h2>
-1)	
-2)	
-3)	 
-5)	
 
 <h3>1 - On Prem SQL Database</h3>
 The On Prem database is mimicked using a SQL 2016 VM, available from the Azure Marketplace: 
