@@ -28,10 +28,10 @@ As stated, in this sample there are two target databases, on to get the Persons 
 the Persons database, we have created two Remote Tables, one for the Address and one for the linking table <br/>
 There is a nice blogpost from Fernando Cobi that can be found here <a href="https://techcommunity.microsoft.com/t5/azure-database-support-blog/cross-database-query-in-azure-sql-database/ba-p/369126">https://techcommunity.microsoft.com/t5/azure-database-support-blog/cross-database-query-in-azure-sql-database/ba-p/369126</a>  that very nicely describes how to setup an query Remote Tables
 <h3>5 - The Logic App</h3>
+The Logic App constist of 3 steps:
 
 ![image](https://user-images.githubusercontent.com/23191445/198030105-d4be095c-35d6-48ed-8742-91909b5e788d.png)
 
-The Logic App constist of 3 steps:
 1) HTPP POST Trigger that takes a JSON body with one parameter named LastName.
 2) SQL Query that SELECTS * FROM the earlier mentioned VIEW WHERE LastName equals the parameter from step 1
 3) The Query Result as a JSON response (The Logic App takes care of the formatting) 
