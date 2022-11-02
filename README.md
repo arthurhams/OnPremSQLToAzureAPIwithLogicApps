@@ -36,17 +36,26 @@ The Logic App constist of 3 steps:
 3) The Query Result as a JSON response (The Logic App takes care of the formatting) 
 
 <h3>6 - API Management</h3>
+I've used the Azure Portal to quickly connect API Management to my backend Logic App
+
+![image](https://user-images.githubusercontent.com/23191445/199545054-b26834a5-0888-4f1e-bc21-1c02f84d7fe5.png)
+
+And used the following Policies to use the Logic App with build-in caching
 
 ```
 <policies>
     <inbound>
         <base />
-        <set-variable name="LastName" value="@(((JValue)context.Request.Body.As<JObject>(preserveContent: true)["LastName"]).ToString())" />
-        <cache-lookup-value key="@("ln" + (string)context.Variables["LastName"])" variable-name="CachedLastName" />
+        <!-- get lastname from Request.Body. NOTE: use the 'preserveContent: true' directive to stop APIM from flushing it -->
+	<set-variable name="LastName" value="@(((JValue)context.Request.Body.As<JObject>(preserveContent: true)["LastName"]).ToString())" />
+        <!-- Check if body for this lastname can be retrieved from cache, store result in CachedLastName variable -->
+	<cache-lookup-value key="@("ln" + (string)context.Variables["LastName"])" variable-name="CachedLastName" />
         <choose>
+	    <!-- if the cache did not return a value, redirect to the Logic App backend to retrieve it from the SQL DB --> 
             <when condition="@(!context.Variables.ContainsKey("CachedLastName"))">
                 <set-backend-service id="apim-generated-policy" backend-id="LogicApp_mylogicapp_ce8f0ca1212c45729e98ef56aaf20013" />
             </when>
+	    <!-- if it did, return the cached value as Response-->
             <otherwise>
                 <return-response>
                     <set-status code="200" reason="Ok" />
