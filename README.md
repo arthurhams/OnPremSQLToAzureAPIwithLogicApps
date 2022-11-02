@@ -26,6 +26,7 @@ consists of two parts;<br/>
 As stated, in this sample there are two target databases, on to get the Persons table and one to get the Address table (and a linking table that holds relation between the two tables).<br/>
 <h3>4 - Remote Tables</h3>
 the Persons database, we have created two Remote Tables, one for the Address and one for the linking table <br/>
+There is a nice blogpost from Fernando Cobi that can be found here <a href="https://techcommunity.microsoft.com/t5/azure-database-support-blog/cross-database-query-in-azure-sql-database/ba-p/369126">https://techcommunity.microsoft.com/t5/azure-database-support-blog/cross-database-query-in-azure-sql-database/ba-p/369126</a>  that very nicely describes how to setup an query Remote Tables
 <h3>5 - The Logic App</h3>
 
 ![image](https://user-images.githubusercontent.com/23191445/198030105-d4be095c-35d6-48ed-8742-91909b5e788d.png)
